@@ -1,0 +1,35 @@
+<!--Created by Isaiah John -->
+
+{% extends 'layout.html' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+
+    <body>
+    <h5>
+        <a href="{{ url_for('forum.index') }}" class="link-light">  ← Back to Forum </a>
+    </h5>
+    <br>
+
+    <div class='card text-start' style="background-color: #242429; width: 50%;">
+        <img src="{{ url_for('static', filename='photos/1abce737920667517ee3459376db0782.jpg') }}" class="responsive">
+        <hr>
+        <h4 class="text-center" style="color: #d4d3d3"> Create a new topic</h4>
+        <p class="text-center"> What's on your mind..?</p>
+        <hr>
+         <form method="post" action="{{ url_for('forum.new_topic') }}" enctype="multipart/form-data" style="margin: 10px" >
+                {{ form.csrf_token }}
+                <dl>
+                    {{ render_field(form.title, class="form-control") }}
+                    {{ render_field(form.content, class="form-control") }}
+                    {{ render_field(form.photo, class="custom-file", id="input_file") }}
+                </dl>
+
+                <button type="submit" class="btn btn-primary">Post</button>
+             <br>
+            </form>
+    </div>
+    <br>
+
+    </body>
+
+{% endblock %}

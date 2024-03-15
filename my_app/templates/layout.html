@@ -1,0 +1,39 @@
+<!-- based on the COMP0034 lecture notes -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+    <title>{{ title }}</title>
+</head>
+
+<body>
+
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.js') }}"></script>
+<header>
+    {% include 'navigation.html' %}
+</header>
+
+<main>
+    {# Displays flashed messages on a page #}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</main>
+
+</body>
+</html>

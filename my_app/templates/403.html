@@ -1,0 +1,16 @@
+<!-- Created by Isaiah John -->
+
+{% set title = "404 - Forbidden" %}
+
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <body>
+    <p>You do not have access to this page.</p>
+
+    <p><a href="{{ url_for("home.index") }}">Click here to return to the Home Page.</a></p>
+
+    </body>
+
+{% endblock %}

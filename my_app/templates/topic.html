@@ -1,0 +1,62 @@
+<!--Created by Isaiah John and Beatrix Popa-->
+
+{% extends 'layout.html' %}
+{% from "_formhelpers.html" import render_field %}
+{% block content %}
+    <h5>
+        <a href="{{ url_for('forum.index') }}" class="link-light">  ← Back to forum </a>
+    </h5>
+
+    <body>
+
+    <h2 class="text-center"> {{ topic.title }} </h2>
+
+    <!-- Table inspired by FlaskBB. Reference: https://flaskbb.readthedocs.io/en/latest/ -->
+
+    <div id="topic-table">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Uploaded</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+
+                    <th scope="row"><img src="{{ post.profile.photo_url }}" height="30" width="30">
+                        <a href="{{ post.profile.url }}"class="link-light">{{ post.profile.username }}</a></th>
+                    <td> {{ post.content }}
+                        {% if post.photo != None %}
+                            <br>
+                            <img src="{{ post.photo_url }}" alt="{{ post.content }}" class="responsive_forum">
+                        {% endif %}
+                    </td>
+                    <td> {{ post.date_created.strftime('%Y-%m-%d') }}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <div class='card text-start' style="background-color: #222734; width: 60%;">
+        <h4 class="text-center" style="color: #b1b0b0"> Add a reply</h4>
+        <form method="post" action="{{ url_for('forum.view_topic', topic_id=topic.id) }}" enctype="multipart/form-data" style="margin-left: 5px" class="form-select-sm">
+                {{ form.csrf_token }}
+                <dl>
+                    {{ render_field(form.content, class="form-control", style="width: 98%",
+                                    placeholder="Enter reply here...") }}
+                    {{ render_field(form.photo, class="custom-file", id="input_file") }}
+                </dl>
+                <button type="submit" class="btn btn-primary">Reply</button>
+                <br>
+        </form>
+    </div>
+    <br>
+    </body>
+
+{% endblock %}

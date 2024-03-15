@@ -1,0 +1,84 @@
+<!--Created by Isaiah John and Beatrix Popa-->
+
+{% extends 'layout.html' %}
+{% block content %}
+    <br>
+    <div class="container justify-content-center">
+        <div class="card h-auto text-center" style="background-color: #101010">
+            <div class="card-body">
+                <img src="{{ url_for('static', filename='photos/people_chatting.jpg') }}" class="responsive">
+                <H2 class="align-content-center">Forum</H2>
+                <p> Welcome to the forum! Feel free to make a new post, or get to know someone!</p>
+                <a href="{{ url_for('forum.new_topic') }}" class="btn btn-outline-light">New topic</a>
+            </div>
+        </div>
+    </div>
+    <body>
+    <br>
+
+    <div id="search-bar">
+
+        <form class="form-inline" action="{{ url_for("forum.search_topics") }}" method="post">
+             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Search for a specific topic:</label>
+                <div class="input-group mb-2">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                           name="search_term">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <br>
+
+    <!-- Table inspired by FlaskBB. Reference: https://flaskbb.readthedocs.io/en/latest/ -->
+
+    <div id="forum-table">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Thread</th>
+                <th scope="col">Profile</th>
+                <th scope="col">Uploaded</th>
+                <th scope="col">Posts</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for topic in topics %}
+                <tr>
+                    <th scope="row">
+                        <a href="{{ topic.url }}" class="link-light"> {{ topic.title }} </a>
+                    </th>
+                    <td>
+                        <a href="{{ topic.profile.url }}" class="text-decoration-none">
+                            <img src="{{ topic.profile.photo_url }}" height="30" width="30">
+                        </a>
+                        <a href="{{ topic.profile.url }}" class="link-light">{{ topic.profile.username }}</a>
+                    </td>
+                    <td>{{ topic.date_created.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ topic.post_count }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    {% if topics == [] %}
+
+        <h5 class="text-center">
+            <strong>It looks like there are no discussions here. Why don't you start one?</strong>
+        </h5>
+
+    {% endif %}
+
+    </body>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+<!--Created by Beatrix Popa -->
+
+{% extends 'layout.html' %}
+{% block content %}
+
+    <body>
+    <div
+            class="bg-image d-flex justify-content-center align-items-center"
+            style="background-image: url('../static/photos/many_stars.png');
+            height: 100vh;">
+
+
+        <div class="container-fluid ">
+
+            <div class="row justify-content-md-center">
+                <div class="card mb-3 h-auto text-center" style="background-color: #000000;">
+                    <img src="{{ url_for('static', filename='photos/3cd09afc4d650596505da611a0dabc42.gif') }}" height="150vh">
+                    <div class="align-content-center"><img src="../static/photos/wavy.PNG" height="50vh" width = "250" >
+                    </div>
+                        <p class="card-text">
+                        Become a master sonic sculptor by discovering features of sound </p>
+                </div>
+            </div>
+
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card h-100 text-center" style="
+                  background-image: url('../static/photos/78_04_article.gif');
+                  ">
+                        <div class="card-body">
+                            <h5 class="card-title">Demo</h5>
+                            <p class="card-text">Not sure if this app is for you? Give it a try!
+                            With the demo you can try out some of the app features for free.</p>
+                            <a href="{{ url_for("/demo/") }}" class="btn btn-outline-light">Demo plot</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="card h-100 text-center" style="
+                  background-image: url('../static/photos/red.jpg');
+                  ">
+                        <div class="card-body">
+                            <h5 class="card-title">Log in</h5>
+                            <p class="card-text">
+                                Log in with your account to view your previous plots, write in the forum and access all the features of the app.
+                            </p>
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light">Log in</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 text-center" style="
+                  background-image: url('../static/photos/blue (2).jpg');
+                  ">
+                        <div class="card-body justify-content-center">
+                            <h5 class="card-title">Create an account</h5>
+                            <p class="card-text">
+                                Don't have an account? No problem!
+                                Gain access to our whole database of recordings
+                                and much more in just a few minutes
+                            </p>
+                            <a href="{{ url_for('auth.signup') }}" class="btn btn-outline-light">Sign up</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+    </body>
+{% endblock %}

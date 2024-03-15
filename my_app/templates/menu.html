@@ -1,0 +1,75 @@
+<!--Created by Isaiah John and Beatrix Popa-->
+
+{% extends 'layout.html' %}
+{% block content %}
+
+    <body>
+    <div
+            class="bg-image d-flex justify-content-center align-items-center"
+            style="background-image: url('../static/photos/many_stars.png');
+            height: 100vh;">
+
+
+        <div class="container-fluid ">
+
+            <div class="row justify-content-md-center">
+                <div class="card mb-3 h-auto text-center" style="background-color: #000000;">
+                    <img src="{{ url_for('static', filename='photos/3cd09afc4d650596505da611a0dabc42.gif') }}" height="150vh">
+                    <div class="align-content-center"><img src="../static/photos/wavy.PNG" height="50vh" width = "250" >
+                    </div>
+                        <p class="card-text">
+                        Welcome back {{ username }}! What would you like to do today?</p>
+                </div>
+            </div>
+
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card h-100 text-center" style="
+                  background-image: url('../static/photos/78_04_article.gif');
+                  ">
+                        <div class="card-body">
+                            <h5 class="card-title">Explore plots</h5>
+                            <p class="card-text"> With our large database of recordings, discover what makes instruments unique!</p>
+                            <a href="{{ url_for("/dash_app/") }}" class="btn btn-outline-light">Plot</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="card h-100 text-center" style="
+                  background-image: url('../static/photos/red.jpg');
+                  ">
+                        <div class="card-body">
+                            <h5 class="card-title">Forum</h5>
+                            <p class="card-text">
+                                Share your thought with other people in the Wavy community.
+                            </p>
+                            <a href="{{ url_for('forum.index') }}" class="btn btn-outline-light">Forum</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 text-center" style="
+                  background-image: url('../static/photos/blue (2).jpg');
+                  ">
+                        <div class="card-body justify-content-center">
+                            <h5 class="card-title">Profile</h5>
+                            <p class="card-text">
+                                View your profile. Here you can update your information as well.
+                            </p>
+                            <a href="{{ url_for("profile.profile") }}" class="btn btn-outline-light">Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+    </body>
+{% endblock %}
